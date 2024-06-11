@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .todo {
+            background-color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .todo p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .todo span {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .todo a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #888;
+        }
+
+        .todo a:hover {
+            color: #555;
+        }
+    </style>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+        <h1>Todo App</h1>
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Enter Todo">
+            <button type="submit">Add Todo</button>
+        </form>
+        {% for todo in todo_list %}
+        <div class="todo">
+            <p>{{ todo.id }} | {{ todo.title }}</p>
+
+            {% if todo.complete == False %}
+            <span>Not Complete</span>
+            {% else %}
+            <span>Complete</span>
+            {% endif %}
+
+        </div>
+        <a href="update/{{ todo.id }}">Update</a>
+        <a href="delete/{{ todo.id }}">Delete</a>
+        {% endfor %}
+</body>
+
+</html>
